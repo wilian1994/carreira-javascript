@@ -18,3 +18,18 @@ campo.on("input", function(){
 
     $("#contador-caracteres").text(conteudo.length);
 })
+
+var tempoDigitacao = $("#tempo-digitacao").text();
+
+campo.one("focus", function(){
+
+    var intervalo = setInterval(function(){
+        tempoDigitacao--;
+        $("#tempo-digitacao").text(tempoDigitacao);
+
+        if(tempoDigitacao < 1){
+            campo.attr("disabled", true);
+            clearInterval(intervalo);
+        }
+    }, 1000)
+});
